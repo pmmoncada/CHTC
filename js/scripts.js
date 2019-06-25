@@ -20,7 +20,7 @@ map.addControl(new mapboxgl.NavigationControl());
 //Finish loading base style
 map.on('style.load', function() {
 // set up the geojson as a source in the map
-  map.addSource('test2, {
+  map.addSource('test, {
      type: 'geojson',
      data: './data/test2.geojson',
    });
@@ -29,7 +29,8 @@ map.on('style.load', function() {
    map.addLayer({
      id: 'city-fill',
      type: 'fill',
-     source: 'test1',
+     source: 'test',
+     layout: {},
      paint: {
          'fill-color': '#088',
          'fill-opacity': 0.8
