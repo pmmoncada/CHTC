@@ -20,9 +20,9 @@ map.addControl(new mapboxgl.NavigationControl());
 //Finish loading base style
 map.on('style.load', function() {
 // set up the geojson as a source in the map
-  map.addSource('test1', {
+  map.addSource('test2, {
      type: 'geojson',
-     data: './Data/test1.geojson',
+     data: './data/test2.geojson',
    });
 
 // add a custom-styled layer for each Depar
