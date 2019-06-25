@@ -7,11 +7,11 @@ var map = new mapboxgl.Map({
   container: 'mapContainer',
   style: 'mapbox://styles/mapbox/light-v9',
   center: [-87.197843,14.096704],
-  zoom: 20,
+  zoom: 15,
 });
 
-// disable map zoom when using scroll
-map.scrollZoom.disable();
+// // disable map zoom when using scroll
+// map.scrollZoom.disable();
 
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
@@ -22,7 +22,7 @@ map.on('style.load', function() {
 // set up the geojson as a source in the map
   map.addSource('test, {
      type: 'geojson',
-     data: './data/test2.geojson',
+     data: './Data/test4.geojson',
    });
 
 // add a custom-styled layer for each Depar
