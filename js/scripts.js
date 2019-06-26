@@ -20,7 +20,7 @@ map.addControl(new mapboxgl.NavigationControl());
 //Finish loading base style
 map.on('style.load', function() {
 // set up the geojson as a source in the map
-  map.addSource('test, {
+  map.addSource('test', {
      type: 'geojson',
      data: './Data/test4.geojson',
    });
@@ -35,5 +35,5 @@ map.on('style.load', function() {
          'fill-color': '#088',
          'fill-opacity': 0.8
          }
-     }
-   }, 'waterway-label');
+     }, 'waterway-label');
+});
