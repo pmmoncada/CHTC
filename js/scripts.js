@@ -22,7 +22,7 @@ map.on('style.load', function() {
 // set up the geojson as a source in the map
   map.addSource('test', {
      type: 'geojson',
-     data: './Data/test4.geojson',
+     data: './Data/testiii.geojson',
    });
 
 // add a custom-styled layer for each Depar
