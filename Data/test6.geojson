@@ -1,7 +1,7 @@
 {
 "type": "FeatureCollection",
-"name": "test4",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::32616" } },
+"name": "test6",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
 { "type": "Feature", "properties": { "Id": 0, "nombre": null, "calle": null, "ciudad": null, "uso": null, "zone": null, "barrio": "San Jorge", "ZoneCodigo": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 477009.005193755030632, 1556920.802272833883762 ], [ 477019.864112457260489, 1556915.589991856366396 ], [ 477019.864112457260489, 1556888.659873474389315 ], [ 477004.22726952470839, 1556889.528586972504854 ], [ 477009.005193755030632, 1556920.802272833883762 ] ] ] ] } },
 { "type": "Feature", "properties": { "Id": 0, "nombre": null, "calle": null, "ciudad": null, "uso": null, "zone": null, "barrio": "San Jorge", "ZoneCodigo": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 477019.864112457260489, 1556915.589991856366396 ], [ 477034.19788514636457, 1556912.549494622275233 ], [ 477035.066598641686141, 1556885.185019487515092 ], [ 477019.864112457260489, 1556888.659873474389315 ], [ 477019.864112457260489, 1556915.589991856366396 ] ] ] ] } },
