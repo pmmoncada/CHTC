@@ -60,12 +60,12 @@ map.on('style.load', function() {
      if (lot) {  // if there's a lot under the mouse, do stuff
        map.getCanvas().style.cursor = 'pointer';  // make the cursor a pointer
 
-       // lookup the corresponding description for the each section
-       $('#nombre').text(lot.properties.nombre);
-       $('#barrio').text(lot.properties.barrio);
-       $('#lotUse').text(lot.properties.ZoneCodigo);
-       $('#lot').text(lot.properties.zone);
-       $('#city').text(lot.properties.ciudad);
+     // lookup the corresponding description for the each section
+     $('#nombre').text(lot.properties.nombre);
+     $('#barrio').text(lot.properties.barrio);
+     $('#lotUse').text(lot.properties.ZoneCodigo);
+     $('#lot').text(lot.properties.zone);
+     $('#city').text(lot.properties.ciudad);
 
        // set this lot's polygon feature as the data for the highlight source
        map.getSource('highlight-feature-lot').setData(lot.geometry);
