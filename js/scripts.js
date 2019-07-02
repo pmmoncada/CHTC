@@ -79,21 +79,6 @@ map.on('style.load', function() {
        });
       }
      })
-   });
-
-
-   // load the colors on the map
-   map.on ('load', function() {
-
-       // $.getJSON('Data/tgu1.geojson', function(data) {
-       //   data.features.map(function(feature) {
-       //     feature.properties.ZoneCodigo = ZoneCodigo);
-       //   });
-
-         map.addSource('tgu', {
-        'type': 'geojson',
-        'data': './Data/tgu1.geojson',
-      });
 
       map.addLayer({
         id: 'genUse',
@@ -102,6 +87,7 @@ map.on('style.load', function() {
         paint: {
           'fill-color': {
               property: 'ZoneCodigo',
+                type: 'categorical',
                 stops: [
                     ['T1', '#F2F12D'],
                     ['T2', '#7A4900'],
@@ -123,4 +109,4 @@ map.on('style.load', function() {
       $('.genUse').on('click', function() {
         map.setLayoutProperty('genUse', 'visibility', 'visible');
       });
-      });
+  });
