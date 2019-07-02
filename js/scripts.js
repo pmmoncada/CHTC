@@ -90,10 +90,9 @@ map.on('style.load', function() {
        //     feature.properties.ZoneCodigo = ZoneCodigo);
        //   });
 
-         map.addSource('tgu', {
-        'type': 'geojson',
-        'data': './Data/tgu1.geojson',
-      });
+       $.getJSON( "Data.tgu1.geojson", function( json ) {
+  console.log( "JSON Data: " + json.properties.ZoneCodigo );
+ });
 
       map.addLayer({
         id: 'genUse',
@@ -101,11 +100,11 @@ map.on('style.load', function() {
         source: 'tgu',
         paint: {
           'fill-color': {
-              property: 'ZoneCodigo',
+                type: "categorical",
                 stops: [
-                    ['T1', '#F2F12D'],
-                    ['T2', '#7A4900'],
-                    ['T3', '#63FFAC'],
+                    ["T1", "#F2F12D"],
+                    ["T2", "#7A4900"],
+                    ["T3", "#63FFAC"],
                     ["T4", "#4FC601"],
                     ["T5", "#BE5418"],
                     ["T6", "#D64091"],
