@@ -80,3 +80,47 @@ map.on('style.load', function() {
       }
      })
    });
+
+
+   // load the colors on the map
+   map.on ('load', function() {
+
+       // $.getJSON('Data/tgu1.geojson', function(data) {
+       //   data.features.map(function(feature) {
+       //     feature.properties.ZoneCodigo = ZoneCodigo);
+       //   });
+
+         map.addSource('tgu', {
+        'type': 'geojson',
+        'data': './Data/tgu1.geojson',
+      });
+
+      map.addLayer({
+        id: 'genUse',
+        type: 'fill',
+        source: 'tgu',
+        paint: {
+          'fill-color': {
+              property: 'ZoneCodigo',
+                stops: [
+                    ['T1', '#F2F12D'],
+                    ['T2', '#7A4900'],
+                    ['T3', '#63FFAC'],
+                    ["T4", "#4FC601"],
+                    ["T5", "#BE5418"],
+                    ["T6", "#D64091"],
+                    ["T7", "#9932CC"],
+                    ["T8", "#E0D01E"],
+                    ["T9", "#3B5DFF"],
+                    ["T10", "#E9B3A1"],
+                ]
+            },
+            'fill-opacity': 0.8,
+        }
+      });
+      map.setLayoutProperty('genUse', 'visibility', 'none');
+
+      $('.genUse').on('click', function() {
+        map.setLayoutProperty('genUse', 'visibility', 'visible');
+      });
+      });
