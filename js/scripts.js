@@ -23,7 +23,7 @@ map.on('style.load', function() {
 // set up the geojson as a source in the map
   map.addSource('tgu', {
      type: 'geojson',
-     data: './Data/tgu1.geojson',
+     data: './Data/tgu2.geojson',
    });
 
 // add a custom-styled layer for each Depar
@@ -64,8 +64,9 @@ map.on('style.load', function() {
      $('#nombre').text(lot.properties.nombre);
      $('#barrio').text(lot.properties.barrio);
      $('#lotUse').text(lot.properties.ZoneCodigo);
-     $('#lot').text(lot.properties.zone);
+     $('#lotArea').text(lot.properties.zone);
      $('#city').text(lot.properties.ciudad);
+     $('#perLot').text(lot.properties.usos_base);
 
        // set this lot's polygon feature as the data for the highlight source
        map.getSource('highlight-feature-lot').setData(lot.geometry);
@@ -79,20 +80,6 @@ map.on('style.load', function() {
        });
       }
      })
-   });
-
-
-   // load the colors on the map
-   map.on ('load', function() {
-
-       // $.getJSON('Data/tgu1.geojson', function(data) {
-       //   data.features.map(function(feature) {
-       //     feature.properties.ZoneCodigo = ZoneCodigo);
-       //   });
-
-       $.getJSON( "Data.tgu1.geojson", function( json ) {
-  console.log( "JSON Data: " + json.properties.ZoneCodigo );
- });
 
       map.addLayer({
         id: 'genUse',
@@ -100,11 +87,12 @@ map.on('style.load', function() {
         source: 'tgu',
         paint: {
           'fill-color': {
-                type: "categorical",
+              property: 'ZoneCodigo',
+                type: 'categorical',
                 stops: [
-                    ["T1", "#F2F12D"],
-                    ["T2", "#7A4900"],
-                    ["T3", "#63FFAC"],
+                    ['T1', '#F2F12D'],
+                    ['T2', '#7A4900'],
+                    ['T3', '#63FFAC'],
                     ["T4", "#4FC601"],
                     ["T5", "#BE5418"],
                     ["T6", "#D64091"],
@@ -121,5 +109,37 @@ map.on('style.load', function() {
 
       $('.genUse').on('click', function() {
         map.setLayoutProperty('genUse', 'visibility', 'visible');
+        map.setLayoutProperty('baseUse', 'visibility', 'none');
       });
+
+      map.addLayer({
+        id: 'baseUse',
+        type: 'fill',
+        source: 'tgu',
+        paint: {
+          'fill-color': {
+              property: 'usos_base',
+                type: 'categorical',
+                stops: [
+                    ['comercial', '#F2F12D'],
+                    ['residencial', '#7A4900'],
+                    ['mixto', '#63FFAC'],
+                    ["baldio", "#4FC601"],
+                    ["desocupado", "#BE5418"],
+                    ["equipamientos", "#D64091"],
+                    ["patrimonio", "#9932CC"],
+                    ["industrial", "#E0D01E"],
+                    ["institucional y empleo", "#3B5DFF"],
+                    ["N/A", "#E9B3A1"],
+                ]
+            },
+            'fill-opacity': 0.8,
+        }
       });
+      map.setLayoutProperty('baseUse', 'visibility', 'none');
+
+      $('.baseUse').on('click', function() {
+        map.setLayoutProperty('baseUse', 'visibility', 'visible');
+        map.setLayoutProperty('genUse', 'visibility', 'none');
+      });
+  });
