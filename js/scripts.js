@@ -10,8 +10,6 @@ var map = new mapboxgl.Map({
   zoom: 14.95,
 });
 
-// // disable map zoom when using scroll
-// map.scrollZoom.disable();
 
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
@@ -26,7 +24,7 @@ map.on('style.load', function() {
      data: './Data/tgu2.geojson',
    });
 
-// add a custom-styled layer for each Depar
+// add a custom-styled layer for each lot
    map.addLayer({
      id: 'lot-fill',
      type: 'fill',
@@ -71,7 +69,7 @@ map.on('style.load', function() {
        // set this lot's polygon feature as the data for the highlight source
        map.getSource('highlight-feature-lot').setData(lot.geometry);
      } else {
-      map.getCanvas().style.cursor = 'default'; // make the cursor default
+      map.getCanvas().style.cursor = 'default'; // make the cursor default when hoverover
 
        // reset the highlight source to an empty featurecollection
        map.getSource('highlight-feature-lot').setData({
@@ -80,7 +78,7 @@ map.on('style.load', function() {
        });
       }
      })
-
+      // add the layer for the general usage of each lot
       map.addLayer({
         id: 'genUse',
         type: 'fill',
@@ -105,13 +103,15 @@ map.on('style.load', function() {
             'fill-opacity': 0.8,
         }
       });
-      map.setLayoutProperty('genUse', 'visibility', 'none');
+      map.setLayoutProperty('genUse', 'visibility', 'none');// for now make this invisible
 
+// when click make the General Usage visible
       $('.genUse').on('click', function() {
         map.setLayoutProperty('genUse', 'visibility', 'visible');
         map.setLayoutProperty('baseUse', 'visibility', 'none');
       });
 
+      // add the layer for specific lot usage
       map.addLayer({
         id: 'baseUse',
         type: 'fill',
@@ -139,8 +139,9 @@ map.on('style.load', function() {
             'fill-opacity': 0.8,
         }
       });
-      map.setLayoutProperty('baseUse', 'visibility', 'none');
+      map.setLayoutProperty('baseUse', 'visibility', 'none');// for now make this invisible
 
+      // when click make per lot usage visible
       $('.baseUse').on('click', function() {
         map.setLayoutProperty('baseUse', 'visibility', 'visible');
         map.setLayoutProperty('genUse', 'visibility', 'none');
