@@ -7,7 +7,7 @@ var map = new mapboxgl.Map({
   container: 'mapContainer',
   style: 'mapbox://styles/mapbox/light-v9',
   center: [-87.210467,14.107138],
-  zoom: 15,
+  zoom: 14.95,
 });
 
 // // disable map zoom when using scroll
