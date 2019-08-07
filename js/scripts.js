@@ -15,16 +15,14 @@ var map = new mapboxgl.Map({
 map.addControl(new mapboxgl.NavigationControl());
 
 var genUseColors = [
-  ['T1', '#F2F12D'],
-  ['T2', '#7A4900'],
-  ['T3', '#63FFAC'],
-  ["T4", "#4FC601"],
-  ["T5", "#BE5418"],
-  ["T6", "#D64091"],
-  ["T7", "#9932CC"],
-  ["T8", "#E0D01E"],
-  ["T9", "#3B5DFF"],
-  ["T10", "#E9B3A1"],
+  ['Predominantemente Residencial', '#FA9318'],
+  ['Centro Histórico-Institucional', '#3B5DFF'],
+  ['Sector Penintenciaría', '#9B0808'],
+  ["Avenida Mixta", "#BE5418"],
+  ["Centro de Tegucigalpa Cultural", "#D64091"],
+  ["Centro de Tegucigalpa Mixto", "#9932CC"],
+  ["Centro de Tegucigalpa Comercial", "#F2F12D"],
+  ["Sector Mixto", "#AC3F88" ],
 ];
 var genUseLegend = `<h3>Legend</h3>`;
 jQuery.each(genUseColors, function(i, val) {
@@ -39,14 +37,14 @@ jQuery.each(genUseColors, function(i, val) {
 var baseUseColors = [
   ['comercial', '#F2F12D'],
   ['residencial', '#FA9318'],
-  ['mixto', '#EE52D1'],
+  ['mixto', '#9932CC'],
   ["parque", "#4FC601"],
   ["plaza", "#A4C189"],
   ["desocupado", "#8E8D8D"],
   ["equipamientos", "#2AC0BF"],
   ["industrial", "#BE5418"],
   ["institucional y empleo", "#3B5DFF"],
-  ["baldio", "#9B0808"],
+  ["baldío", "#9B0808"],
   ["parqueo", '#F5CDFF'],
 ];
 var baseUseLegend = `<h3>Legend</h3>`;
@@ -114,6 +112,9 @@ map.on('style.load', function() {
      $('#lotUse').text(lot.properties.ZoneCodigo);
      $('#lotArea').text(lot.properties.generalUso);
      $('#perLot').text(lot.properties.usos_base);
+     $('#category').text(lot.properties.class_patr);
+     $('#currentState').text(lot.properties.estado_pat);
+
 
        // set this lot's polygon feature as the data for the highlight source
        map.getSource('highlight-feature-lot').setData(lot.geometry);
@@ -134,7 +135,7 @@ map.on('style.load', function() {
         source: 'tgu',
         paint: {
           'fill-color': {
-              property: 'ZoneCodigo',
+              property: 'generalUso',
                 type: 'categorical',
                 stops: genUseColors
             },
