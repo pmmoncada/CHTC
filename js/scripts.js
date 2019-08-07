@@ -26,7 +26,7 @@ var genUseColors = [
   ["T9", "#3B5DFF"],
   ["T10", "#E9B3A1"],
 ];
-var genUseLegend = ``;
+var genUseLegend = `<h3>Legend</h3>`;
 jQuery.each(genUseColors, function(i, val) {
   genUseLegend += `
     <div>
@@ -49,7 +49,7 @@ var baseUseColors = [
   ["baldio", "#9B0808"],
   ["parqueo", '#F5CDFF'],
 ];
-var baseUseLegend = ``;
+var baseUseLegend = `<h3>Legend</h3>`;
 jQuery.each(baseUseColors, function(i, val) {
   baseUseLegend += `
     <div>
@@ -58,6 +58,12 @@ jQuery.each(baseUseColors, function(i, val) {
     </div>
   `;
 })
+
+var patrimonioInfoBox = `
+    <span class="labels-2">Información Sobre Los Patrimonios</span><br/>
+    <span class="labels"> Categoría: </span><span class="labels" id="category"></span><br/>
+    <span class="labels"> Estado Actual: </span><span class="labels" id="currentState"></span><br/>
+  `;
 
 //Finish loading base style
 map.on('style.load', function() {
@@ -142,7 +148,7 @@ map.on('style.load', function() {
         map.setLayoutProperty('genUse', 'visibility', 'visible');
         map.setLayoutProperty('baseUse', 'visibility', 'none');
         map.setLayoutProperty('patrimonio', 'visibility', 'none');
-        $('.legendText').html(genUseLegend);
+        $('.legend').html(genUseLegend);
       });
 
       // add the layer for specific lot usage
@@ -166,7 +172,7 @@ map.on('style.load', function() {
         map.setLayoutProperty('baseUse', 'visibility', 'visible');
         map.setLayoutProperty('genUse', 'visibility', 'none');
         map.setLayoutProperty('patrimonio', 'visibility', 'none');
-        $('.legendText').html(baseUseLegend);
+        $('.legend').html(baseUseLegend);
       });
 
 
@@ -193,7 +199,7 @@ map.on('style.load', function() {
         map.setLayoutProperty('patrimonio', 'visibility', 'visible');
         map.setLayoutProperty('baseUse', 'visibility', 'none');
         map.setLayoutProperty('genUse', 'visibility', 'none');
-        $('.legendText').html("");
+        $('.legend').html(patrimonioInfoBox);
       });
 
       // add a layer for the highlighted lot
