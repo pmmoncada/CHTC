@@ -14,7 +14,7 @@ var map = new mapboxgl.Map({
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
 
-var stops = [
+var genUseColors = [
   ['T1', '#F2F12D'],
   ['T2', '#7A4900'],
   ['T3', '#63FFAC'],
@@ -26,14 +26,37 @@ var stops = [
   ["T9", "#3B5DFF"],
   ["T10", "#E9B3A1"],
 ];
-
-jQuery.each(stops, function(i, val) {
-  $('.legend').append(`
+var genUseLegend = ``;
+jQuery.each(genUseColors, function(i, val) {
+  genUseLegend += `
     <div>
       <div class="legend-color-box" style="background-color:${val[1]};"></div>
       ${val[0]}
     </div>
-  `)
+  `;
+})
+
+var baseUseColors = [
+  ['comercial', '#F2F12D'],
+  ['residencial', '#FA9318'],
+  ['mixto', '#EE52D1'],
+  ["parque", "#4FC601"],
+  ["plaza", "#A4C189"],
+  ["desocupado", "#8E8D8D"],
+  ["equipamientos", "#2AC0BF"],
+  ["industrial", "#BE5418"],
+  ["institucional y empleo", "#3B5DFF"],
+  ["baldio", "#9B0808"],
+  ["parqueo", '#F5CDFF'],
+];
+var baseUseLegend = ``;
+jQuery.each(baseUseColors, function(i, val) {
+  baseUseLegend += `
+    <div>
+      <div class="legend-color-box" style="background-color:${val[1]};"></div>
+      ${val[0]}
+    </div>
+  `;
 })
 
 //Finish loading base style
@@ -107,7 +130,7 @@ map.on('style.load', function() {
           'fill-color': {
               property: 'ZoneCodigo',
                 type: 'categorical',
-                stops: stops
+                stops: genUseColors
             },
             'fill-opacity': 0.8,
         }
@@ -119,6 +142,7 @@ map.on('style.load', function() {
         map.setLayoutProperty('genUse', 'visibility', 'visible');
         map.setLayoutProperty('baseUse', 'visibility', 'none');
         map.setLayoutProperty('patrimonio', 'visibility', 'none');
+        $('.legendText').html(genUseLegend);
       });
 
       // add the layer for specific lot usage
@@ -130,19 +154,7 @@ map.on('style.load', function() {
           'fill-color': {
               property: 'usos_base',
                 type: 'categorical',
-                stops: [
-                    ['comercial', '#F2F12D'],
-                    ['residencial', '#FA9318'],
-                    ['mixto', '#EE52D1'],
-                    ["parque", "#4FC601"],
-                    ["plaza", "#A4C189"],
-                    ["desocupado", "#8E8D8D"],
-                    ["equipamientos", "#2AC0BF"],
-                    ["industrial", "#BE5418"],
-                    ["institucional y empleo", "#3B5DFF"],
-                    ["baldio", "#9B0808"],
-                    ["parqueo", '#F5CDFF'],
-                ]
+                stops: baseUseColors
             },
             'fill-opacity': 0.8,
         }
@@ -154,6 +166,7 @@ map.on('style.load', function() {
         map.setLayoutProperty('baseUse', 'visibility', 'visible');
         map.setLayoutProperty('genUse', 'visibility', 'none');
         map.setLayoutProperty('patrimonio', 'visibility', 'none');
+        $('.legendText').html(baseUseLegend);
       });
 
 
@@ -180,6 +193,7 @@ map.on('style.load', function() {
         map.setLayoutProperty('patrimonio', 'visibility', 'visible');
         map.setLayoutProperty('baseUse', 'visibility', 'none');
         map.setLayoutProperty('genUse', 'visibility', 'none');
+        $('.legendText').html("");
       });
 
       // add a layer for the highlighted lot
