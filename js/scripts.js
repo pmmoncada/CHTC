@@ -14,7 +14,27 @@ var map = new mapboxgl.Map({
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
 
+var stops = [
+  ['T1', '#F2F12D'],
+  ['T2', '#7A4900'],
+  ['T3', '#63FFAC'],
+  ["T4", "#4FC601"],
+  ["T5", "#BE5418"],
+  ["T6", "#D64091"],
+  ["T7", "#9932CC"],
+  ["T8", "#E0D01E"],
+  ["T9", "#3B5DFF"],
+  ["T10", "#E9B3A1"],
+];
 
+jQuery.each(stops, function(i, val) {
+  $('.legend').append(`
+    <div>
+      <div class="legend-color-box" style="background-color:${val[1]};"></div>
+      ${val[0]}
+    </div>
+  `)
+})
 
 //Finish loading base style
 map.on('style.load', function() {
@@ -87,18 +107,7 @@ map.on('style.load', function() {
           'fill-color': {
               property: 'ZoneCodigo',
                 type: 'categorical',
-                stops: [
-                    ['T1', '#F2F12D'],
-                    ['T2', '#7A4900'],
-                    ['T3', '#63FFAC'],
-                    ["T4", "#4FC601"],
-                    ["T5", "#BE5418"],
-                    ["T6", "#D64091"],
-                    ["T7", "#9932CC"],
-                    ["T8", "#E0D01E"],
-                    ["T9", "#3B5DFF"],
-                    ["T10", "#E9B3A1"],
-                ]
+                stops: stops
             },
             'fill-opacity': 0.8,
         }
