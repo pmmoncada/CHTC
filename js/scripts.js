@@ -61,6 +61,8 @@ var patrimonioInfoBox = `
     <span class="labels-2">Información Sobre Los Patrimonios</span><br/>
     <span class="labels"> Categoría: </span><span class="labels" id="category"></span><br/>
     <span class="labels"> Estado Actual: </span><span class="labels" id="currentState"></span><br/>
+    <br/>
+    <span class="labels-2">Los patrimonios son de color morado</span><br/>
   `;
 
 //Finish loading base style
