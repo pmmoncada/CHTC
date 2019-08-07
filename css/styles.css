@@ -38,11 +38,6 @@ body, html {
   background-color: #FCF6F5FF;
 }
 
-#interactive-box2 {
-  background-color: #FCF6F5FF;
-  visibility: hidden;
-}
-
 .legend {
   line-height: 18px;
 }
