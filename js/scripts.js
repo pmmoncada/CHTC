@@ -21,7 +21,7 @@ map.on('style.load', function() {
 // set up the geojson as a source in the map
   map.addSource('tgu', {
      type: 'geojson',
-     data: './Data/tgu2.geojson',
+     data: './Data/tgu5.geojson',
    });
 
 // add a custom-styled layer for each lot
@@ -60,10 +60,10 @@ map.on('style.load', function() {
 
      // lookup the corresponding description for the each section
      $('#nombre').text(lot.properties.nombre);
+     $('#catastral').text(lot.properties.claveCatas);
      $('#barrio').text(lot.properties.barrio);
      $('#lotUse').text(lot.properties.ZoneCodigo);
-     $('#lotArea').text(lot.properties.zone);
-     $('#city').text(lot.properties.ciudad);
+     $('#lotArea').text(lot.properties.generalUso);
      $('#perLot').text(lot.properties.usos_base);
 
        // set this lot's polygon feature as the data for the highlight source
@@ -109,6 +109,7 @@ map.on('style.load', function() {
       $('.genUse').on('click', function() {
         map.setLayoutProperty('genUse', 'visibility', 'visible');
         map.setLayoutProperty('baseUse', 'visibility', 'none');
+        map.setLayoutProperty('patrimonio', 'visibility', 'none');
       });
 
       // add the layer for specific lot usage
@@ -128,12 +129,10 @@ map.on('style.load', function() {
                     ["plaza", "#A4C189"],
                     ["desocupado", "#8E8D8D"],
                     ["equipamientos", "#2AC0BF"],
-                    ["patrimonio", "#9932CC"],
                     ["industrial", "#BE5418"],
                     ["institucional y empleo", "#3B5DFF"],
                     ["baldio", "#9B0808"],
                     ["parqueo", '#F5CDFF'],
-                    ["N/A", "#E9B3A1"],
                 ]
             },
             'fill-opacity': 0.8,
@@ -145,5 +144,49 @@ map.on('style.load', function() {
       $('.baseUse').on('click', function() {
         map.setLayoutProperty('baseUse', 'visibility', 'visible');
         map.setLayoutProperty('genUse', 'visibility', 'none');
+        map.setLayoutProperty('patrimonio', 'visibility', 'none');
       });
+
+
+      // add the layer for specific lot usage
+      map.addLayer({
+        id: 'patrimonio',
+        type: 'fill',
+        source: 'tgu',
+        paint: {
+          'fill-color': {
+              property: 'Loc_Patrim',
+                type: 'categorical',
+                stops: [
+                    ['patrimonio', '#9932CC'],
+                ]
+            },
+            'fill-opacity': 0.8,
+        }
+      });
+      map.setLayoutProperty('patrimonio', 'visibility', 'none');// for now make this invisible
+
+      // when click make per lot usage visible
+      $('.patrimonio').on('click', function() {
+        map.setLayoutProperty('patrimonio', 'visibility', 'visible');
+        map.setLayoutProperty('baseUse', 'visibility', 'none');
+        map.setLayoutProperty('genUse', 'visibility', 'none');
+      });
+
+      // add a layer for the highlighted lot
+          map.addLayer({
+            id: 'highlight-line',
+            type: 'fill',
+            source: 'highlight-feature-lot',
+            // paint: {
+            //   'line-width': 3,
+            //   'line-opacity': 0.9,
+            //   'line-color': 'black',
+            // }
+            paint: {
+              'fill-color': 'gray',
+              'fill-opacity': 0.5
+              }
+          });
+
   });

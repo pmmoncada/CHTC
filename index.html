@@ -33,23 +33,29 @@
     <div id="mapContainer">
       <div id="sidebar">
         <br/>
-        <h1>Existing land use in the Historic Center of Tegucigalpa </h1>
-        <h6>Select the data you want to see on the map and hover over each lot to see more information about it</h6>
+        <h1> Uso de Suelos en el Centro Histórico de Tegucigalpa </h1>
+        <h6> Seleccione lo que desea ver en el mapa y para ver más información pase el cursor sobre cada lote.</h6>
         <!-- creating the buttons for the map -->
         <div class="info-box">
-          <span class='labels-1' id="year-select">Select for information: </span><br>
-          <button type="button" class="genUse"> General Sector Use</button>
-          <button type="button" class="baseUse"> Per Lot Use </button>
+          <span class='labels-1' id="year-select"> Seleccione para información geografica: </span><br>
+          <button type="button" class="baseUse"> Uso Por Lote </button><br/>
+          <button type="button" class="genUse"> Uso General Por Sector</button><br/>
+          <button type="button" class="patrimonio"> Patrimonios </button>
       </div>
       <!-- creating the hover over section with information -->
       <div class="info-box interactive-box" id="interactive-box">
-          <span class="labels-2">Hover over a lot for more information</span><br/>
-          <span class="labels"> Location Name: </span><span class="labels" id="nombre"></span><br/>
-          <span class="labels"> Neighborhood: </span><span class="labels" id="barrio"></span><br/>
-          <span class="labels"> General Land Use Code: </span><span class="labels" id="lotUse"></span><br/>
-          <span class="labels"> General Land Use Area: </span><span class="labels" id="lotArea"></span><br/>
-          <span class="labels"> Per Lot Land Use: </span><span class="labels" id="perLot"></span><br/>
-          <span class="labels"> City: </span><span class="labels" id="city"></span><br/>
+          <span class="labels-2"> Mantene el mouse sobre un lote para ver más información </span><br/>
+          <span class="labels"> Nombre del Local: </span><span class="labels" id="nombre"></span><br/>
+          <span class="labels"> Clave Catastral: </span><span class="labels" id="catastral"></span><br/>
+          <span class="labels"> Barrio: </span><span class="labels" id="barrio"></span><br/>
+          <span class="labels"> Uso Del Lote: </span><span class="labels" id="perLot"></span><br/>
+          <span class="labels"> Uso General Por Sector: </span><span class="labels" id="lotArea"></span><br/>
+      </div>
+
+      <div class="info-box interactive-box2" id="interactive-box2">
+          <span class="labels-2">Información Sobre Los Patrimonios</span><br/>
+          <span class="labels"> Categoría: </span><span class="labels" id="category"></span><br/>
+          <span class="labels"> Estado Actual: </span><span class="labels" id="currentState"></span><br/>
       </div>
 
       </div>
